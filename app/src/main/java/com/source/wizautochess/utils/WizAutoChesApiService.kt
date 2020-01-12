@@ -27,7 +27,7 @@ interface WizAutoChesApiService {
     companion object {
 
         //api endpoint URL -> change to AWS endpoint when server is turned on
-        const val baseURL = "http://127.0.0.1:5000/"
+        private const val baseURL = "http://127.0.0.1:5000/"
 
         fun create(): WizAutoChesApiService {
             val retrofit = Retrofit.Builder()
