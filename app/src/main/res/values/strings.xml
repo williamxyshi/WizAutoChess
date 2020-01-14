@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WizAutoChess</string>
+    <string name="edit_username">Enter your username</string>
+    <string name="button_connect">Connect</string>
 </resources>
