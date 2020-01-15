@@ -19,7 +19,7 @@ interface WizAutoChesApiService {
     /**
      * basic testcall that sees if server returns a response
      */
-    @GET("testcall")
+    @GET("/")
     fun testCall():
             Observable<ResultModel.Result>
 
@@ -27,7 +27,7 @@ interface WizAutoChesApiService {
     companion object {
 
         //api endpoint URL -> change to AWS endpoint when server is turned on
-        private const val baseURL = "http://127.0.0.1:5000/"
+        private const val baseURL = "http:/flask-env.jjxav9tgia.us-east-2.elasticbeanstalk.com/"
 
         fun create(): WizAutoChesApiService {
             val retrofit = Retrofit.Builder()
