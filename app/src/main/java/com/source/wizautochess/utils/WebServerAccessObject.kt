@@ -14,7 +14,7 @@ object WebServerAccessObject {
     var disposable: Disposable? = null
 
     fun makeCall(){
-        wikiApiServe.testCall().subscribeOn(Schedulers.io())
+        wikiApiServe.startCall().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result -> showResult(result.id) },

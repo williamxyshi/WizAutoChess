@@ -1,9 +1,9 @@
 package com.source.wizautochess.models
 
-object ResultModel {
+object IdModel {
 
     data class Result(val id: String)
 
-
 }
+
 
