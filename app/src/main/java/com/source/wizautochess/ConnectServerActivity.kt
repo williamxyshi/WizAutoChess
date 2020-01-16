@@ -27,6 +27,7 @@ class ConnectServerActivity : AppCompatActivity() {
         WebServerAccessObject.startServerCall(vm)
 
         connectButton.setOnClickListener {
+            connectButton.visibility = View.GONE
             WebServerAccessObject.setUsernameCall(vm, vm.playerID.value?:return@setOnClickListener,  usernameText.text.toString())
         }
     }
