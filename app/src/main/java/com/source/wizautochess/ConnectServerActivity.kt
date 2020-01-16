@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.source.wizautochess.fragments.LobbyFragment
 import com.source.wizautochess.utils.WebServerAccessObject
 import com.source.wizautochess.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_connect.*
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_connect.*
 class ConnectServerActivity : AppCompatActivity() {
 
     private lateinit var vm: MainActivityViewModel
+    private lateinit var  lobbyFragment: LobbyFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "launching connect to server activity")
@@ -21,6 +23,7 @@ class ConnectServerActivity : AppCompatActivity() {
 
         setUpVM()
 
+        lobbyFragment = LobbyFragment()
         WebServerAccessObject.startServerCall(vm)
 
         connectButton.setOnClickListener {
@@ -37,10 +40,7 @@ class ConnectServerActivity : AppCompatActivity() {
         })
 
         vm.usernameResponse.observe(this, Observer {
-
-            /**
-             * initialize LOBBY fragment
-             */
+            supportFragmentManager.beginTransaction().add(R.id.fragmentView, lobbyFragment).commit()
         })
 
     }

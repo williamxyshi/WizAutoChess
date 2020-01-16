@@ -2,4 +2,6 @@
     <string name="app_name">WizAutoChess</string>
     <string name="edit_username">Enter your username</string>
     <string name="button_connect">Connect</string>
+    <string name="text_lobby">Lobby</string>
+    <string name="button_ready">Ready</string>
 </resources>
