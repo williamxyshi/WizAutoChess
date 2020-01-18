@@ -34,6 +34,17 @@ object WebServerAccessObject {
             )
     }
 
+    fun getLobbyDataCall(vm: MainActivityViewModel){
+        wizApiServe.getPlayers().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result -> showResult("received lobby player info")
+                    vm.lobbyData.value = result.players
+                    vm.playerCount.value = result.playercount},
+                { error -> showResult(error.message?:"ERROR") }
+            )
+    }
+
     fun showResult(s: String){
         Log.d(TAG, "result from server: $s")
     }

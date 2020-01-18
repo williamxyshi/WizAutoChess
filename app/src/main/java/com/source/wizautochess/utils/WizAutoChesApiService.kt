@@ -1,6 +1,7 @@
 package com.source.wizautochess.utils
 
 import com.source.wizautochess.models.IdModel
+import com.source.wizautochess.models.LobbyDataModel
 import com.source.wizautochess.models.UsernameModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -24,11 +25,19 @@ interface WizAutoChesApiService {
 
 
     /**
-     * start call that initializes the game
+     * add a user to the lobby
      */
     @GET("/lobby/adduser")
     fun addUser(@Query("id") id: String, @Query("username") username: String ):
             Observable<UsernameModel.Result>
+
+    /**
+     * get usernames and ready status of all players in the lobby
+     */
+    @GET("/lobby/getplayers")
+    fun getPlayers():
+            Observable<LobbyDataModel.Players>
+
 
     companion object {
 
