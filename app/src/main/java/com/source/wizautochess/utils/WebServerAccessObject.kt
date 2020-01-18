@@ -38,7 +38,7 @@ object WebServerAccessObject {
         wizApiServe.getPlayers().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { result -> showResult("received lobby player info")
+                { result -> showResult(result.toString())
                     vm.lobbyData.value = result.players
                     vm.playerCount.value = result.playercount},
                 { error -> showResult(error.message?:"ERROR") }

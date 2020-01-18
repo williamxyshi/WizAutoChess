@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 
 import com.source.wizautochess.R
 import com.source.wizautochess.models.LobbyDataModel
@@ -50,6 +51,7 @@ class LobbyFragment : Fragment() {
 
     private fun setUpVM() {
         Log.d(TAG, "initializing vm")
+        vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         vm.lobbyData.observe(this, Observer {
             val size = vm.playerCount.value?:0
