@@ -49,6 +49,5 @@ object WebServerAccessObject {
         Log.d(TAG, "result from server: $s")
     }
 
-
     const val TAG = "WebServerAccessObject"
 }
