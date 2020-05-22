@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.source.wizautochess.R
+import com.source.wizautochess.adapters.LobbyPlayersAdapter
 import com.source.wizautochess.models.LobbyDataModel
 import com.source.wizautochess.utils.WebServerAccessObject
 import com.source.wizautochess.viewmodels.MainActivityViewModel
@@ -25,6 +28,9 @@ class LobbyFragment : Fragment() {
     }
     private var usernameTextViews: MutableList<TextView> = mutableListOf()
 
+    private lateinit var recyclerView: RecyclerView
+    private val lobbyPlayersAdapter: LobbyPlayersAdapter = LobbyPlayersAdapter(context, vm)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,18 +40,16 @@ class LobbyFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootview = inflater.inflate(R.layout.fragment_lobby, container, false)
 
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText1))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText2))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText3))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText4))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText5))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText6))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText7))
-        usernameTextViews.add(rootview.findViewById(R.id.usernameText8))
-
         setUpVM()
 
         getLobbyDataThread.start()
+
+
+
+        recyclerView = rootview.findViewById(R.id.playerList)
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerView.adapter = lobbyPlayersAdapter
+
         return rootview
     }
 
@@ -56,12 +60,6 @@ class LobbyFragment : Fragment() {
         vm.lobbyData.observe(this, Observer {
             val size = vm.playerCount.value?:0
             val lobbyData = vm.lobbyData.value
-            if (lobbyData != null)
-            for (i in 0 until size) {
-                usernameTextViews[i].apply {
-                    text = lobbyData[i].username
-                }
-            }
         })
     }
 
