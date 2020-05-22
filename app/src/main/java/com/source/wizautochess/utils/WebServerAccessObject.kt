@@ -39,8 +39,8 @@ object WebServerAccessObject {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result -> showResult(result.toString())
-                    vm.lobbyData.value = result.lobbyinfo.playersinfo
-                    vm.playerCount.value = result.lobbyinfo.playercount},
+                    vm.lobbyData.value = result.players
+                    vm.playerCount.value = result.playercount},
                 { error -> showResult(error.message?:"ERROR") }
             )
     }

@@ -29,7 +29,6 @@ class LobbyFragment : Fragment() {
     private var usernameTextViews: MutableList<TextView> = mutableListOf()
 
     private lateinit var recyclerView: RecyclerView
-    private val lobbyPlayersAdapter: LobbyPlayersAdapter = LobbyPlayersAdapter(context, vm)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +47,7 @@ class LobbyFragment : Fragment() {
 
         recyclerView = rootview.findViewById(R.id.playerList)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        recyclerView.adapter = lobbyPlayersAdapter
+        recyclerView.adapter = LobbyPlayersAdapter(context, vm)
 
         return rootview
     }
@@ -60,6 +59,8 @@ class LobbyFragment : Fragment() {
         vm.lobbyData.observe(this, Observer {
             val size = vm.playerCount.value?:0
             val lobbyData = vm.lobbyData.value
+            recyclerView.adapter?.notifyDataSetChanged()
+            Log.d(TAG, "player size: ${lobbyData?.size}, lobby data: $lobbyData")
         })
     }
 
