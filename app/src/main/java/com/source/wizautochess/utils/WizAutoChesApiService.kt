@@ -3,6 +3,7 @@ package com.source.wizautochess.utils
 import com.source.wizautochess.models.IdModel
 import com.source.wizautochess.models.LobbyDataModel
 import com.source.wizautochess.models.UsernameModel
+import com.source.wizautochess.models.ReadyModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -37,6 +38,13 @@ interface WizAutoChesApiService {
     @GET("/lobby/getplayers")
     fun getPlayers():
             Observable<LobbyDataModel.Result>
+
+    /**
+     * tell the server this user is ready
+     */
+    @GET("/lobby/ready")
+    fun setReady(@Query("id") id: String):
+            Observable<ReadyModel.Result>
 
 
     companion object {

@@ -2,23 +2,22 @@ package com.source.wizautochess.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.source.wizautochess.R
 import com.source.wizautochess.adapters.LobbyPlayersAdapter
-import com.source.wizautochess.models.LobbyDataModel
 import com.source.wizautochess.utils.WebServerAccessObject
 import com.source.wizautochess.viewmodels.MainActivityViewModel
 
 class LobbyFragment : Fragment() {
+    private lateinit var readyButton: Button
     private lateinit var vm: MainActivityViewModel
     private val getLobbyDataThread = Thread {
         while (true) {
@@ -26,7 +25,6 @@ class LobbyFragment : Fragment() {
             WebServerAccessObject.getLobbyDataCall(vm)
         }
     }
-    private var usernameTextViews: MutableList<TextView> = mutableListOf()
 
     private lateinit var recyclerView: RecyclerView
 
@@ -38,8 +36,18 @@ class LobbyFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val rootview = inflater.inflate(R.layout.fragment_lobby, container, false)
+        readyButton = rootview.findViewById(R.id.readyButton)
 
         setUpVM()
+
+        readyButton.setOnClickListener {
+            Log.d(TAG, "ready clicked")
+            Log.d(TAG, "Player id: ${vm.playerID.value}")
+            Log.d(TAG, "Player usernameResponse: ${vm.usernameResponse.value}")
+            Log.d(TAG, "Player lobbyData: ${vm.lobbyData.value}")
+            Log.d(TAG, "Player playerCount: ${vm.playerCount.value}")
+            WebServerAccessObject.setUserReadyCall(vm.playerID.value?:return@setOnClickListener)
+        }
 
         getLobbyDataThread.start()
 
@@ -54,7 +62,7 @@ class LobbyFragment : Fragment() {
 
     private fun setUpVM() {
         Log.d(TAG, "initializing vm")
-        vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
 
         vm.lobbyData.observe(this, Observer {
             val size = vm.playerCount.value?:0
