@@ -20,86 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/usernameText1"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lobbyText" />
-
-    <TextView
-        android:id="@+id/usernameText2"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText1" />
-
-    <TextView
-        android:id="@+id/usernameText3"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText2" />
-
-    <TextView
-        android:id="@+id/usernameText4"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText3" />
-
-    <TextView
-        android:id="@+id/usernameText5"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText4" />
-
-    <TextView
-        android:id="@+id/usernameText6"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText5" />
-
-    <TextView
-        android:id="@+id/usernameText7"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText6" />
-
-    <TextView
-        android:id="@+id/usernameText8"
-        android:layout_width="325dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameText7" />
-
     <Button
         android:id="@+id/readyButton"
         android:layout_width="188dp"
@@ -111,5 +31,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playerList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lobbyText"
+        app:layout_constraintBottom_toTopOf="@id/readyButton"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
