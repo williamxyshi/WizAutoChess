@@ -3,4 +3,4 @@ online multiplayer mobile (Android) auto chess game set in a medieval fantasy se
 
 Client side, game data is pulled from web server located at https://github.com/williamxyshi/WizAutoChess-Web-Server.
 
-Still a work in progress, current focus is: Auto battle algorithm
+Still a work in progress, current focus is: realtime user data processing on the flask server
